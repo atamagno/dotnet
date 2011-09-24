@@ -20,26 +20,26 @@
 // THE SOFTWARE. 
 #endregion
 
-namespace Dotnet.Samples.Ninject
+using Dotnet.Samples.Ninject.Materials;
+using Dotnet.Samples.Ninject.Surfaces;
+using Ninject;
+
+namespace Dotnet.Samples.Ninject.Artists
 {
-    interface ISurface
-    {
-        string Use();
-    }
 
-    class Canvas : ISurface
+    public class Painter : IArtist
     {
-        public string Use()
-        {
-            return "canvas";
-        }
-    }
+        public string Name { get; set; }
 
-    class Hardboard : ISurface
-    {
-        public string Use()
+        [Inject]
+        public IMaterial Material { get; set; }
+
+        [Inject]
+        public ISurface Surface { get; set; }
+
+        public string Paint()
         {
-            return "hardboard";
+            return Material.Apply(Surface.Use());
         }
     }
 }

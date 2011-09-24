@@ -21,35 +21,14 @@
 #endregion
 
 using System;
-using Dotnet.Samples.Ninject.Artists;
-using Dotnet.Samples.Ninject.Modules;
-using Ninject;
 
-namespace Dotnet.Samples.Ninject
+namespace Dotnet.Samples.Ninject.Materials
 {
-    class Program
+    class Oil : IMaterial
     {
-        static void Main()
+        public string Apply(string surface)
         {
-            try
-            {
-                var kernel = new StandardKernel(new PainterModule());
-
-                var painter = kernel.Get<Painter>();
-                    painter.Name = "Peter Gibbons";
-
-                Console.WriteLine(painter.Name + painter.Paint());
-            }
-            catch (Exception error)
-            {
-                Console.WriteLine(error.Message);
-            }
-            finally
-            {
-                Console.Write(Environment.NewLine);
-                Console.WriteLine("Press any key to continue . . .");
-                Console.ReadKey(true);
-            }
+            return string.Format(" painted with oil on {0}.", surface);
         }
     }
 }

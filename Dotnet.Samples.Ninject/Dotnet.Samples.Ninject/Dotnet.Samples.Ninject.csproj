@@ -48,9 +48,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="src\Artist.cs" />
-    <Compile Include="src\IMaterial.cs" />
-    <Compile Include="src\ISurface.cs" />
+    <Compile Include="src\Artists\IArtist.cs" />
+    <Compile Include="src\Artists\Painter.cs" />
+    <Compile Include="src\Materials\Acrylic.cs" />
+    <Compile Include="src\Materials\Oil.cs" />
+    <Compile Include="src\Modules\PainterModule.cs" />
+    <Compile Include="src\Materials\IMaterial.cs" />
+    <Compile Include="src\Surfaces\Canvas.cs" />
+    <Compile Include="src\Surfaces\Hardboard.cs" />
+    <Compile Include="src\Surfaces\ISurface.cs" />
     <Compile Include="src\Program.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

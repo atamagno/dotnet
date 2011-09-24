@@ -20,35 +20,20 @@
 // THE SOFTWARE. 
 #endregion
 
-using Ninject;
+using Dotnet.Samples.Ninject.Artists;
+using Dotnet.Samples.Ninject.Materials;
+using Dotnet.Samples.Ninject.Surfaces;
 using Ninject.Modules;
 
-namespace Dotnet.Samples.Ninject
+namespace Dotnet.Samples.Ninject.Modules
 {
-
-    class Artist
-    {
-        public string Name { get; set; }
-
-        [Inject]
-        public IMaterial Material { get; set; }
-
-        [Inject]
-        public ISurface Surface { get; set; }
-
-        public string Paint()
-        {
-            return Material.Apply(Surface.Use());
-        }
-    }
-
     class PainterModule : NinjectModule
     {
         public override void Load()
         {
             Bind<ISurface>().To<Canvas>();
             Bind<IMaterial>().To<Oil>();
-            Bind<Artist>().ToSelf();
+            Bind<Painter>().ToSelf();
         }
     }
 }

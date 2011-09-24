@@ -20,28 +20,13 @@
 // THE SOFTWARE. 
 #endregion
 
-using System;
-
-namespace Dotnet.Samples.Ninject
+namespace Dotnet.Samples.Ninject.Surfaces
 {
-    interface IMaterial
+    class Hardboard : ISurface
     {
-        string Apply(string surface);
-    }
-
-    class Oil : IMaterial
-    {
-        public string Apply(string surface)
+        public string Use()
         {
-            return String.Format(" painted with oil on {0}.", surface);
-        }
-    }
-
-    class Acrylic : IMaterial
-    {
-        public string Apply(string surface)
-        {
-            return String.Format(" painted with acrylic on {0}.", surface);
+            return "hardboard";
         }
     }
 }

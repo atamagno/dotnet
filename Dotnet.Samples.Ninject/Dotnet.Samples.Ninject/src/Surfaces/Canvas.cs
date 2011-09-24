@@ -20,36 +20,13 @@
 // THE SOFTWARE. 
 #endregion
 
-using System;
-using Dotnet.Samples.Ninject.Artists;
-using Dotnet.Samples.Ninject.Modules;
-using Ninject;
-
-namespace Dotnet.Samples.Ninject
+namespace Dotnet.Samples.Ninject.Surfaces
 {
-    class Program
+    class Canvas : ISurface
     {
-        static void Main()
+        public string Use()
         {
-            try
-            {
-                var kernel = new StandardKernel(new PainterModule());
-
-                var painter = kernel.Get<Painter>();
-                    painter.Name = "Peter Gibbons";
-
-                Console.WriteLine(painter.Name + painter.Paint());
-            }
-            catch (Exception error)
-            {
-                Console.WriteLine(error.Message);
-            }
-            finally
-            {
-                Console.Write(Environment.NewLine);
-                Console.WriteLine("Press any key to continue . . .");
-                Console.ReadKey(true);
-            }
+            return "canvas";
         }
     }
 }
