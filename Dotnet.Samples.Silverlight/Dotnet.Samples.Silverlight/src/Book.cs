@@ -24,34 +24,19 @@ namespace Dotnet.Samples.Silverlight
 {
     #region References
     using System;
-    using System.Collections.Generic;
     #endregion
 
     public class Book
     {
         #region Properties
-        public string Isbn10 { get; set; }
-        public string Isbn13 { get; set; }
+        public string Isbn { get; set; }
         public string Title { get; set; }
         public string Author { get; set; }
         public string Publisher { get; set; }
         public DateTime Published { get; set; }
-        public int? Pages { get; set; }
+        public int Pages { get; set; }
         public bool InStock { get; set; }
-        #endregion
-
-        #region Constructors
-        public Book(string isbn10, string title, string author, string publisher, DateTime published, string isbn13 = "N/A", int? pages = null, bool instock = true)
-        {
-            this.Isbn10 = isbn10;
-            this.Isbn13 = isbn13;
-            this.Title = title;
-            this.Author = author;
-            this.Publisher = publisher;
-            this.Published = published;
-            this.Pages = pages;
-            this.InStock = instock;
-        }
+        public string Description { get; set; }
         #endregion
     }
 }

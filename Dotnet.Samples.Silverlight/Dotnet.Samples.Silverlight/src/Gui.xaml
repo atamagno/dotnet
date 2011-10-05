@@ -16,7 +16,7 @@
             <sdk:DataGrid Grid.Row="0" x:Name="BooksDataGrid" DataContext="books" AutoGenerateColumns="False" CanUserReorderColumns="True" CanUserResizeColumns="True" CanUserSortColumns="True" IsReadOnly="True" Width="Auto" Height="Auto" Margin="8">
                 <!-- TODO: Improve width management -->
                 <sdk:DataGrid.Columns>
-                    <sdk:DataGridTextColumn x:Name="BooksDataGridIsbn10Column" Header="ISBN" Binding="{Binding Isbn10}" Width="80"/>
+                    <sdk:DataGridTextColumn x:Name="BooksDataGridIsbnColumn" Header="ISBN" Binding="{Binding Isbn}" Width="80"/>
                     <sdk:DataGridTextColumn x:Name="BooksDataGridTitleColumn" Header="Title" Binding="{Binding Title}" Width="160" />
                     <!--
                         <sdk:DataGridTextColumn.ElementStyle>
@@ -28,7 +28,7 @@
                     -->
                     <sdk:DataGridTextColumn  x:Name="BooksDataGridAuthorColumn" Header="Author" Binding="{Binding Author}" Width="160"/>
                     <sdk:DataGridTextColumn  x:Name="BooksDataGridPublisherColumn" Header="Publisher" Binding="{Binding Publisher}" Width="160" />
-                    <sdk:DataGridTemplateColumn  x:Name="BooksDataGridPublishedColumn" Header="Published" Width="120" >
+                    <sdk:DataGridTemplateColumn  x:Name="BooksDataGridPublishedColumn" Header="Published" Width="120" SortMemberPath="Published">
                         <sdk:DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <sdk:DatePicker IsEnabled="False" UseLayoutRounding="True" SelectedDate="{Binding Published}" SelectedDateFormat="Short" />
@@ -54,7 +54,7 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Column="0" Grid.Row="0" x:Name="BookDetailsGridIsbnTextBlock" Width="Auto" VerticalAlignment="Center" MinHeight="16" MaxHeight="16" Margin="8" Text="ISBN" />
-                    <TextBox Grid.Column="1" Grid.Row="0"  x:Name="BookDetailsGridIsbnTextBox" Width="Auto" MinHeight="24" MaxHeight="24" Margin="8" Text="{Binding Isbn10}" />
+                    <TextBox Grid.Column="1" Grid.Row="0"  x:Name="BookDetailsGridIsbnTextBox" Width="Auto" MinHeight="24" MaxHeight="24" Margin="8" Text="{Binding Isbn}" />
                     <TextBlock Grid.Column="0" Grid.Row="1" x:Name="BookDetailsGridTitleTextBlock" Width="Auto" VerticalAlignment="Center" MinHeight="16" MaxHeight="16" Margin="8" Text="Title" />
                     <TextBox Grid.Column="1" Grid.Row="1" x:Name="BookDetailsGridTitleTextBox" Width="Auto" MinHeight="24" MaxHeight="24" Margin="8" Text="{Binding Title}" />
                     <TextBlock Grid.Column="0" Grid.Row="2" x:Name="BookDetailsGridAuthorTextBlock" Width="Auto" VerticalAlignment="Center" MinHeight="16" MaxHeight="16" Margin="8" Text="Author" />
