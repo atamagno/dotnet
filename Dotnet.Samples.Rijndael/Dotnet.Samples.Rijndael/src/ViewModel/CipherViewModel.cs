@@ -187,7 +187,7 @@ namespace Dotnet.Samples.Rijndael
                         {
                             error = "Salt value cannot be null or empty.";
                         }
-                        else if (this.Salt.Length < 8)
+                        else if (this.Salt.Length < 9)
                         {
                             error = "Salt should be at least eight bytes long.";
                         }
