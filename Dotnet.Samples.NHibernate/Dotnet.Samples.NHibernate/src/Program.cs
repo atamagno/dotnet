@@ -1,5 +1,5 @@
 ﻿#region License
-// Copyright (c) 2011 Nano Taboada, http://openid.nanotaboada.com.ar 
+// Copyright (c) 2012 Nano Taboada, http://openid.nanotaboada.com.ar 
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -22,18 +22,11 @@
 
 #region References
 using System;
-using System.IO;
-using System.Reflection;
-using System.Text;
 using NHibernate;
-using NHibernate.Cfg;
-using NHibernate.Tool.hbm2ddl;
 #endregion
 
 /// <remarks>
-/// INFO:
-/// - The 'Copy Local' property of the referenced database assembly
-///   'System.Data.SqlServerCe' should be set to 'True'.
+/// INFO: Make sure 'System.Data.SqlServerCe' has its 'Copy Local' property set to 'True'.
 /// </remarks>
 
 namespace Dotnet.Samples.NHibernate
@@ -44,43 +37,29 @@ namespace Dotnet.Samples.NHibernate
         {
             try
             {
-                var isf = Helpers.CreateSessionFactory();
+                var config = Helpers.CreateSessionFactory();
 
-                using (ISession session = isf.OpenSession())
+                using (ISession session = config.OpenSession())
                 {
                     using (ITransaction transaction = session.BeginTransaction())
                     {
-                        // INFO: ISBN-10 format pattern should be #-###-#####-#
-                        var isbn = "0596800959";
-
-                        // INFO: Performing Read for simplicity but could be any CRUD operation.
-                        var book = session.Get<Book>(isbn);
+                        var book = session.Get<Book>("0596800959");
 
                         if (book != null)
                         {
-                            var txt = new StringBuilder();
-                                txt.Append(System.Environment.NewLine);
-                                txt.AppendLine(String.Format("Getting book with ISBN: {0}-{1}-{2}-{3}", isbn.Substring(0,1), isbn.Substring(1,3), isbn.Substring(4,5), isbn.Substring(9,1)));
-                                txt.Append(System.Environment.NewLine);
-                                txt.AppendLine(String.Format("{0,-37} {1,-23} {2,10} {3,5}", "-".Repeat(37), "-".Repeat(23), "-".Repeat(10), "-".Repeat(5)));
-                                txt.AppendLine(String.Format("{0,-37} {1,-23} {2,-10} {3,-5}", "Title", "Author", "Published", "Pages"));
-                                txt.AppendLine(String.Format("{0,-37} {1,-23} {2,10} {3,5}", "-".Repeat(37), "-".Repeat(23), "-".Repeat(10), "-".Repeat(5)));
-                                txt.AppendLine(String.Format("{0,-37} {1,-23} {2,10} {3,5}", book.Title, book.Author, book.Published.ToShortDateString(), book.Pages));
-                                txt.AppendLine(String.Format("{0,-37} {1,-23} {2,10} {3,5}", "-".Repeat(37), "-".Repeat(23), "-".Repeat(10), "-".Repeat(5)));
-
-                            Console.Write(txt.ToString());
+                            Console.WriteLine(Helpers.FormatConsoleOutput(book));
                         }
                     }
                 }
             }
-            catch (Exception err)
+            catch (Exception error)
             {
-                Console.Write(System.Environment.NewLine);
-                Console.WriteLine(String.Format("Exception: {0}", err.Message));
+                Console.Write(Environment.NewLine);
+                Console.WriteLine(String.Format("Exception: {0}", error.ToString()));
             }
             finally
             {
-                Console.Write(System.Environment.NewLine);
+                Console.Write(Environment.NewLine);
                 Console.Write("Press any key to continue . . .");
                 Console.ReadKey(true);
             }

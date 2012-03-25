@@ -56,12 +56,12 @@
     <Compile Include="src\Program.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="lib\Castle.Core.dll" />
-    <Content Include="lib\FluentNHibernate.dll" />
-    <Content Include="lib\Iesi.Collections.dll" />
-    <Content Include="lib\NHibernate.ByteCode.Castle.dll" />
-    <Content Include="lib\NHibernate.dll" />
-    <Content Include="lib\System.Data.SqlServerCe.dll" />
+    <None Include="lib\Castle.Core.dll" />
+    <None Include="lib\FluentNHibernate.dll" />
+    <None Include="lib\Iesi.Collections.dll" />
+    <None Include="lib\NHibernate.ByteCode.Castle.dll" />
+    <None Include="lib\NHibernate.dll" />
+    <None Include="lib\System.Data.SqlServerCe.dll" />
     <Content Include="res\Catalog.sdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

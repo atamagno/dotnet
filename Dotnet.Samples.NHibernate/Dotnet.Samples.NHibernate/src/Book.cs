@@ -1,5 +1,5 @@
 ﻿#region License
-// Copyright (c) 2011 Nano Taboada, http://openid.nanotaboada.com.ar 
+// Copyright (c) 2012 Nano Taboada, http://openid.nanotaboada.com.ar 
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -20,19 +20,21 @@
 // THE SOFTWARE. 
 #endregion
 
+#region References
 using System;
+#endregion
 
 namespace Dotnet.Samples.NHibernate
 {
     public class Book
     {
-        public string Isbn { get; set; }
-        public string Title { get; set; }
-        public string Author { get; set; }
-        public string Publisher { get; set; }
-        public DateTime Published { get; set; }
-        public int? Pages { get; set; }
-        public bool InStock { get; set; }
-        public string Description { get; set; }
+        public virtual string Isbn { get; set; }
+        public virtual string Title { get; set; }
+        public virtual string Author { get; set; }
+        public virtual string Publisher { get; set; }
+        public virtual DateTime Published { get; set; }
+        public virtual int? Pages { get; set; }
+        public virtual bool InStock { get; set; }
+        public virtual string Description { get; set; }
     }
 }
