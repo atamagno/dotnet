@@ -1,5 +1,5 @@
 ﻿﻿#region License
-// Copyright (c) 2011 Nano Taboada, http://openid.nanotaboada.com.ar 
+// Copyright (c) 2012 Nano Taboada, http://openid.nanotaboada.com.ar 
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -20,63 +20,53 @@
 // THE SOFTWARE. 
 #endregion
 
+#region References
+using System;
+using System.Data.SQLite;
+#endregion
+
 namespace Dotnet.Samples.Sqlite
 {
-    #region References
-    using System;
-    using System.Data.SQLite;
-    using System.IO;
-    using System.Reflection;
-    using System.Text;
-    #endregion
-
     class Program
     {
         static void Main()
         {
-            var res = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "res");
-            var str = new SQLiteConnectionStringBuilder();
-                str.DataSource = Path.Combine(res, "catalog.sqlite");
-
-            // INFO: Performing Read for simplicity but could be any CRUD operation.
-            var sql = "SELECT * FROM books";
+            var statement = "SELECT * FROM Books";
 
             try
             {
-                using (var con = new SQLiteConnection(str.ConnectionString))
+                using (var connection = new SQLiteConnection(Helpers.GetConnectionString()))
                 {
-                    con.Open();
-                    using (var cmd = new SQLiteCommand(sql, con))
+                    connection.Open();
+                    using (var transaction = connection.BeginTransaction())
                     {
-                        using (SQLiteDataReader data = cmd.ExecuteReader())
+                        try
                         {
-                            // TODO: Implement better handling for SQLiteDataReader data (LINQ support?).
-                            if (data.HasRows)
+                            using (var command = new SQLiteCommand(statement, connection, transaction))
                             {
-                                var txt = new StringBuilder();
-                                    txt.AppendLine(String.Format("{0,-37} {1,-23} {2,10} {3,5}", "-".Repeat(37), "-".Repeat(23), "-".Repeat(10), "-".Repeat(5)));
-                                    txt.AppendLine(String.Format("{0,-37} {1,-23} {2,-10} {3,-5}", "Title", "Author", "Published", "Pages"));
-                                    txt.AppendLine(String.Format("{0,-37} {1,-23} {2,10} {3,5}", "-".Repeat(37), "-".Repeat(23), "-".Repeat(10), "-".Repeat(5)));
-                                
-                                while (data.Read())
+                                using (var reader = command.ExecuteReader())
                                 {
-                                    txt.AppendFormat("{0,-37} {1,-23} {2,10} {3,5}", data.GetString(1), data.GetString(2), data.GetDateTime(4).ToShortDateString(), data.GetValue(5));
-                                    txt.Append(Environment.NewLine);
+                                    if (reader.HasRows)
+                                    {
+                                        Console.WriteLine(Helpers.FormatConsoleOutput(reader));   
+                                    }
                                 }
-                                txt.AppendLine(String.Format("{0,-37} {1,-23} {2,10} {3,5}", "-".Repeat(37), "-".Repeat(23), "-".Repeat(10), "-".Repeat(5)));
-                                
-                                Console.Write(txt.ToString());
                             }
-                            data.Close();
+                            transaction.Commit();
+                        }
+                        catch (Exception)
+                        {
+                            transaction.Rollback();
+                            throw;
                         }
                     }
-                    con.Close();
+                    connection.Close();
                 }
             }
-            catch (Exception err)
+            catch (Exception error)
             {
                 Console.Write(Environment.NewLine);
-                Console.WriteLine(String.Format("Exception: {0}", err.Message));
+                Console.WriteLine(String.Format("Exception: {0}", error.ToString()));
             }
             finally
             {
