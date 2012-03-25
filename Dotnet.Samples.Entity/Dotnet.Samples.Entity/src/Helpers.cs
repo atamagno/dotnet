@@ -22,22 +22,28 @@
 
 #region References
 using System;
-using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
 #endregion
 
 namespace Dotnet.Samples.Entity
 {
 
-    public class Book
+    public static class Helpers
     {
-        [Key]
-        public string Isbn { get; set; }
-        public string Title { get; set; }
-        public string Author { get; set; }
-        public string Publisher { get; set; }
-        public DateTime Published { get; set; }
-        public int Pages { get; set; }
-        public bool InStock { get; set; }
-        public string Description { get; set; }
+        public static string FormatConsoleOutput(IQueryable<Book> books)
+        {
+            var txt = new StringBuilder();
+            txt.AppendLine(String.Format("{0,-37} {1,-23} {2,10} {3,5}", "-".Repeat(37), "-".Repeat(23), "-".Repeat(10), "-".Repeat(5)));
+            txt.AppendLine(String.Format("{0,-37} {1,-23} {2,-10} {3,-5}", "Title", "Author", "Published", "Pages"));
+            txt.AppendLine(String.Format("{0,-37} {1,-23} {2,10} {3,5}", "-".Repeat(37), "-".Repeat(23), "-".Repeat(10), "-".Repeat(5)));
+            foreach (var book in books)
+            {
+                txt.AppendLine(String.Format("{0,-37} {1,-23} {2,10} {3,5}", book.Title, book.Author, book.Published.ToShortDateString(), book.Pages));
+            }
+            txt.AppendLine(String.Format("{0,-37} {1,-23} {2,10} {3,5}", "-".Repeat(37), "-".Repeat(23), "-".Repeat(10), "-".Repeat(5)));
+
+            return txt.ToString();
+        }
     }
 }

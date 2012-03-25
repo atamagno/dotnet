@@ -1,5 +1,5 @@
 ﻿#region License
-// Copyright (c) 2011 Nano Taboada, http://openid.nanotaboada.com.ar 
+// Copyright (c) 2012 Nano Taboada, http://openid.nanotaboada.com.ar 
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -20,14 +20,13 @@
 // THE SOFTWARE. 
 #endregion
 
+#region References
+using System;
+using System.Linq;
+#endregion
+
 namespace Dotnet.Samples.Entity
 {
-    #region References
-    using System;
-    using System.Linq;
-    using System.Text;
-    #endregion
-
     class Program
     {
         static void Main()
@@ -41,24 +40,13 @@ namespace Dotnet.Samples.Entity
                                 orderby book.Published
                                 select book;
 
-                    var txt = new StringBuilder();
-                        txt.AppendLine(String.Format("{0,-37} {1,-23} {2,10} {3,5}", "-".Repeat(37), "-".Repeat(23), "-".Repeat(10), "-".Repeat(5)));
-                        txt.AppendLine(String.Format("{0,-37} {1,-23} {2,-10} {3,-5}", "Title", "Author", "Published", "Pages"));
-                        txt.AppendLine(String.Format("{0,-37} {1,-23} {2,10} {3,5}", "-".Repeat(37), "-".Repeat(23), "-".Repeat(10), "-".Repeat(5)));
-
-                    foreach (var book in books)
-                    {
-                        txt.AppendLine(String.Format("{0,-37} {1,-23} {2,10} {3,5}", book.Title, book.Author, book.Published.ToShortDateString(), book.Pages));
-                    }
-                        txt.AppendLine(String.Format("{0,-37} {1,-23} {2,10} {3,5}", "-".Repeat(37), "-".Repeat(23), "-".Repeat(10), "-".Repeat(5)));
-                
-                    Console.WriteLine(txt.ToString());
+                    Console.WriteLine(Helpers.FormatConsoleOutput(books));
                 }
             }
-            catch (Exception err)
+            catch (Exception error)
             {
                 Console.Write(Environment.NewLine);
-                Console.WriteLine(String.Format("Exception: {0}", err.Message));
+                Console.WriteLine(String.Format("Exception: {0}", error.ToString()));
             }
             finally
             {
