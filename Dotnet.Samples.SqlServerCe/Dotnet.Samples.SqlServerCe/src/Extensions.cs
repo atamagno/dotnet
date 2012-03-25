@@ -1,5 +1,5 @@
 ﻿#region License
-// Copyright (c) 2011 Nano Taboada, http://openid.nanotaboada.com.ar 
+// Copyright (c) 2012 Nano Taboada, http://openid.nanotaboada.com.ar 
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -20,12 +20,12 @@
 // THE SOFTWARE. 
 #endregion
 
+#region References
+using System.Text;
+#endregion
+
 namespace Dotnet.Samples.SqlServerCe
 {
-    #region References
-    using System.Text;
-    #endregion
-
     public static class Extensions
     {
         public static string Repeat(this char character, int frequency)
