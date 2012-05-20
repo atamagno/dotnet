@@ -20,7 +20,7 @@
 // THE SOFTWARE. 
 #endregion
 
-namespace Dotnet.Samples.Rijndael
+namespace Dotnet.Samples.Avalon
 {
     #region References
     using System;

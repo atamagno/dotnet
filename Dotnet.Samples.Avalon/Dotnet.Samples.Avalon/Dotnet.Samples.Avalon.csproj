@@ -71,8 +71,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\ViewModel\DecryptCommand.cs" />
-    <Compile Include="src\ViewModel\EncryptCommand.cs" />
+    <Compile Include="src\Commands\DecryptCommand.cs" />
+    <Compile Include="src\Commands\EncryptCommand.cs" />
     <Compile Include="src\ViewModel\ViewModel.cs" />
     <Compile Include="src\View\CipherView.xaml.cs">
       <DependentUpon>CipherView.xaml</DependentUpon>

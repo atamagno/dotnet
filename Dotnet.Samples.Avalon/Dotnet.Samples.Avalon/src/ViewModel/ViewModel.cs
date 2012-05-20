@@ -23,7 +23,7 @@
 /// <remarks>
 /// Abstraction inspired by Josh Smith http://joshsmithonwpf.wordpress.com/
 /// </remarks>
-namespace Dotnet.Samples.Rijndael
+namespace Dotnet.Samples.Avalon
 {
     #region References
     using System;

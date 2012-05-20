@@ -20,12 +20,12 @@
 // THE SOFTWARE. 
 #endregion
 
-namespace Dotnet.Samples.Rijndael
+namespace Dotnet.Samples.Avalon
 {
     #region References
     using System;
     using System.Windows.Input;
-    using System.Windows;
+    using System.Linq;
     #endregion
 
     public class EncryptCommand : ICommand
@@ -57,10 +57,10 @@ namespace Dotnet.Samples.Rijndael
         #region Methods
         public bool CanExecute(object parameter)
         {
-            if (this._cipherViewModel != null
-                && !string.IsNullOrEmpty(this._cipherViewModel.Plaintext)
+            if (!string.IsNullOrEmpty(this._cipherViewModel.Plaintext)
                 && !string.IsNullOrEmpty(this._cipherViewModel.Passphrase)
-                && this._cipherViewModel.Salt.Length => 8)
+                && (!string.IsNullOrEmpty(this._cipherViewModel.Salt) 
+                    && this._cipherViewModel.Salt.Length >= 8))
             {
                 return true;
             }

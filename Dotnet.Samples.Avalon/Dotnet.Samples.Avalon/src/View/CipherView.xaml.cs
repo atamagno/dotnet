@@ -20,14 +20,20 @@
 // THE SOFTWARE. 
 #endregion
 
-namespace Dotnet.Samples.Rijndael
+namespace Dotnet.Samples.Avalon
 {
     #region References
+    using System;
     using System.Windows;
     #endregion
 
-    public partial class App : Application
+    public partial class CipherView : Window
     {
-
+        #region Constructors
+        public CipherView()
+        {
+            this.InitializeComponent();
+        }
+        #endregion
     }
 }

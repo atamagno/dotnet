@@ -20,7 +20,7 @@
 // THE SOFTWARE. 
 #endregion
 
-namespace Dotnet.Samples.Rijndael
+namespace Dotnet.Samples.Avalon
 {
     #region References
     using System;
@@ -87,6 +87,20 @@ namespace Dotnet.Samples.Rijndael
             }
         }
 
+        private bool _isReadOnly;
+        public bool IsReadOnly
+        {
+            get
+            {
+                return _isReadOnly;
+            }
+            set
+            {
+                this._isReadOnly = value;
+                OnPropertyChanged("IsReadOnly");
+            }
+        }
+
         private EncryptCommand _encrypt;
         public EncryptCommand Encrypt
         {
@@ -119,10 +133,7 @@ namespace Dotnet.Samples.Rijndael
         #region Constructors
         public CipherViewModel()
         {
-            this._cipher = new Cipher()
-            { 
-                Salt = "NaCl"
-            };
+            this._cipher = new Cipher();
 
             this._encrypt = new EncryptCommand(this, DoEncrypt);
             this._decrypt = new DecryptCommand(this, DoDecrypt);
@@ -132,6 +143,8 @@ namespace Dotnet.Samples.Rijndael
         #region Methods
         private void DoEncrypt()
         {
+            this._isReadOnly = true;
+            OnPropertyChanged("IsReadOnly");
             this._cipher.Ciphertext = this._cipher.Encrypt();
             OnPropertyChanged("Ciphertext");
             this._cipher.Plaintext = String.Empty;
@@ -140,6 +153,8 @@ namespace Dotnet.Samples.Rijndael
 
         private void DoDecrypt()
         {
+            this._isReadOnly = false;
+            OnPropertyChanged("IsReadOnly");
             this._cipher.Plaintext = this._cipher.Decrypt();
             OnPropertyChanged("Plaintext");
             this._cipher.Ciphertext = String.Empty;
@@ -187,7 +202,7 @@ namespace Dotnet.Samples.Rijndael
                         {
                             error = "Salt value cannot be null or empty.";
                         }
-                        else if (this.Salt.Length < 9)
+                        else if (this.Salt.Length < 8)
                         {
                             error = "Salt should be at least eight bytes long.";
                         }

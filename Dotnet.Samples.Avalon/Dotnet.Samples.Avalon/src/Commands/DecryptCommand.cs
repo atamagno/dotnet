@@ -20,7 +20,7 @@
 // THE SOFTWARE. 
 #endregion
 
-namespace Dotnet.Samples.Rijndael
+namespace Dotnet.Samples.Avalon
 {
     #region References
     using System;
@@ -55,8 +55,10 @@ namespace Dotnet.Samples.Rijndael
         #region Methods
         public bool CanExecute(object parameter)
         {
-            if (_cipherViewModel != null
-                && !string.IsNullOrEmpty(this._cipherViewModel.Ciphertext))
+            if (!string.IsNullOrEmpty(this._cipherViewModel.Ciphertext)
+                && !string.IsNullOrEmpty(this._cipherViewModel.Passphrase)
+                && (!string.IsNullOrEmpty(this._cipherViewModel.Salt)
+                    && this._cipherViewModel.Salt.Length >= 8))
             {
                 return true;
             }
