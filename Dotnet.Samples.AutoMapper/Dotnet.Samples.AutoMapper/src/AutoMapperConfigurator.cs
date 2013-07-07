@@ -20,11 +20,11 @@
 // THE SOFTWARE. 
 #endregion
 
+using System.Collections.Generic;
+using AutoMapper;
+
 namespace Dotnet.Samples.AutoMapper
 {
-    using System.Collections.Generic;
-    using AutoMapper;
-
     public static class AutoMapperConfigurator
     {
         public static void Configure()

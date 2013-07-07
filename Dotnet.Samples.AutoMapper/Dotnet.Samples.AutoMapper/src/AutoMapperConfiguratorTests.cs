@@ -20,13 +20,13 @@
 // THE SOFTWARE. 
 #endregion
 
+using System;
+using AutoMapper;
+using FluentAssertions;
+using NUnit.Framework;
+
 namespace Dotnet.Samples.AutoMapper
 {
-    using System;
-    using AutoMapper;
-    using FluentAssertions;
-    using NUnit.Framework;
-
     [TestFixture]
     public class AutoMapperConfiguratorTests
     {
