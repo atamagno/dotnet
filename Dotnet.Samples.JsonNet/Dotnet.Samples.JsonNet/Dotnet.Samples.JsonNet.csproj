@@ -45,7 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="src\VolumeFactory.cs" />
+    <Compile Include="src\VolumeStub.cs" />
     <Compile Include="src\VolumeTests.cs" />
     <Compile Include="src\Volume.cs" />
   </ItemGroup>
