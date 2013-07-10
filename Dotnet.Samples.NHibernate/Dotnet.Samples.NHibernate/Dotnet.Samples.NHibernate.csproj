@@ -49,10 +49,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="src\SessionFactory.cs" />
     <Compile Include="src\BookMap.cs" />
     <Compile Include="src\Extensions.cs" />
     <Compile Include="src\Book.cs" />
-    <Compile Include="src\Helpers.cs" />
     <Compile Include="src\Program.cs" />
   </ItemGroup>
   <ItemGroup>
