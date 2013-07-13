@@ -55,7 +55,7 @@
   <ItemGroup>
     <Compile Include="src\Book.cs" />
     <Compile Include="src\BooksBuilder.cs" />
-    <Compile Include="src\BookBuilderTests.cs" />
+    <Compile Include="src\BooksBuilderTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lib\FizzWare.NBuilder.dll" />
