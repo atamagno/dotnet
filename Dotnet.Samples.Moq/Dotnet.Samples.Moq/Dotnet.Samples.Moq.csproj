@@ -51,12 +51,10 @@
   <ItemGroup>
     <Compile Include="src\IProgram.cs" />
     <Compile Include="src\Program.cs" />
-    <Compile Include="src\AssemblyInfo.cs" />
     <Compile Include="src\ProgramTests.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="lib\Moq.dll" />
     <None Include="lib\nunit.framework.dll" />
   </ItemGroup>
