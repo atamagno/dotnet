@@ -1,48 +1,43 @@
-﻿#region License
-// Copyright (c) 2011 Nano Taboada, http://openid.nanotaboada.com.ar 
+﻿// ----------------------------------------------------------------------------
+// <copyright file="ProgramTests.cs" company="NanoTaboada">
+//   Copyright (c) 2013 Nano Taboada, http://openid.nanotaboada.com.ar 
 // 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
+//   Permission is hereby granted, free of charge, to any person obtaining a copy
+//   of this software and associated documentation files (the "Software"), to deal
+//   in the Software without restriction, including without limitation the rights
+//   to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//   copies of the Software, and to permit persons to whom the Software is
+//   furnished to do so, subject to the following conditions:
 // 
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
+//   The above copyright notice and this permission notice shall be included in
+//   all copies or substantial portions of the Software.
 // 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE. 
-#endregion
+//   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//   THE SOFTWARE.
+// </copyright>
+// -----------------------------------------------------------------------﻿-----
 
 using NUnit.Framework;
 
+[module: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.StyleCop.CSharp.OrderingRules", "SA1200:UsingDirectivesMustBePlacedWithinNamespace", Justification = "Prevented solution build.")]
+[module: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "For educational purposes only.")]
+
 namespace Dotnet.Samples.NUnit
 {
-    /// <remarks>
-    /// Basic rules for placing and naming tests
-    /// 
-    /// - For each class, create at least one class with the name [ClassName]Tests.
-    /// - For each method, create at least one test method with the following name: 
-    ///   [MethodName]_[StateUnderTest]_[ExpectedBehavior].
-    ///
-    /// Source: Osherove, Roy. The Art of Unit Testing. Manning, 2009. 28. Print.
-    /// </remarks>
-
     [TestFixture]
     public class ProgramTests
     {
-        public Program program { get; private set; }
+        public Program Program { get; private set; }
         
         [SetUp]
         public void Setup()
         {
-            this.program = new Program();
+            this.Program = new Program();
         }
         
         [Test]
@@ -52,7 +47,7 @@ namespace Dotnet.Samples.NUnit
             string expected;
             
             // Act
-            expected = program.GetPangram();
+            expected = this.Program.GetPangram();
             
             // Assert
             Assert.IsNotNullOrEmpty(expected);
@@ -66,7 +61,7 @@ namespace Dotnet.Samples.NUnit
             string actual;
             
             // Act
-            actual = program.GetPangram();
+            actual = this.Program.GetPangram();
             
             // Assert
             Assert.AreEqual(expected, actual);
@@ -75,7 +70,7 @@ namespace Dotnet.Samples.NUnit
         [TearDown]
         public void TearDown()
         {
-            this.program = null;
+            this.Program = null;
         }
     }
 }
