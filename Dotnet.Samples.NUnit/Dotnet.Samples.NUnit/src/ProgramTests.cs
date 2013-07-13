@@ -32,14 +32,27 @@ namespace Dotnet.Samples.NUnit
     [TestFixture]
     public class ProgramTests
     {
-        public Program Program { get; private set; }
+        private Program program;
         
         [SetUp]
         public void Setup()
         {
-            this.Program = new Program();
+            this.program = new Program();
         }
-        
+
+        [Test]
+        public void GetPangram_ActualValue_IsInstanceOfString()
+        {
+            // Arrange
+            object actual;
+
+            // Act
+            actual = this.program.GetPangram();
+
+            // Assert
+            Assert.IsInstanceOf<string>(actual);
+        }
+
         [Test]
         public void GetPangram_ExpectedValue_IsNotNullOrEmpty()
         {
@@ -47,7 +60,7 @@ namespace Dotnet.Samples.NUnit
             string expected;
             
             // Act
-            expected = this.Program.GetPangram();
+            expected = this.program.GetPangram();
             
             // Assert
             Assert.IsNotNullOrEmpty(expected);
@@ -61,7 +74,7 @@ namespace Dotnet.Samples.NUnit
             string actual;
             
             // Act
-            actual = this.Program.GetPangram();
+            actual = this.program.GetPangram();
             
             // Assert
             Assert.AreEqual(expected, actual);
@@ -70,7 +83,7 @@ namespace Dotnet.Samples.NUnit
         [TearDown]
         public void TearDown()
         {
-            this.Program = null;
+            this.program = null;
         }
     }
 }
