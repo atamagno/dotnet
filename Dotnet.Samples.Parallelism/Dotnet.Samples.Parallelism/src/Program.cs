@@ -1,24 +1,29 @@
-﻿#region License
-// Copyright (c) 2010 Nano Taboada, http://openid.nanotaboada.com.ar
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
-#endregion
+﻿// -----------------------------------------------------------------------------
+// <copyright file="Program.cs" company="NanoTaboada">
+//   Copyright (c) 2013 Nano Taboada, http://openid.nanotaboada.com.ar 
+// 
+//   Permission is hereby granted, free of charge, to any person obtaining a copy
+//   of this software and associated documentation files (the "Software"), to deal
+//   in the Software without restriction, including without limitation the rights
+//   to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//   copies of the Software, and to permit persons to whom the Software is
+//   furnished to do so, subject to the following conditions:
+// 
+//   The above copyright notice and this permission notice shall be included in
+//   all copies or substantial portions of the Software.
+// 
+//   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//   THE SOFTWARE.
+// </copyright>
+// -----------------------------------------------------------------------﻿------
+
+[module: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "For educational purposes only.")]
+[module: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1626:SingleLineCommentsMustNotUseDocumentationStyleSlashes", Justification = "For educational purposes only.")]
 
 namespace Dotnet.Samples.Parallelism
 {
@@ -28,9 +33,9 @@ namespace Dotnet.Samples.Parallelism
     using System.Threading;
     using System.Threading.Tasks;
 
-    class Program
+    public class Program
     {
-        static void Main()
+        public static void Main()
         {
             try
             {
@@ -46,7 +51,6 @@ namespace Dotnet.Samples.Parallelism
                 /// </remarks>
                 var random = new RNGCryptoServiceProvider();
                 var buffer = new byte[4];
-
 
                 /// <remarks>
                 ///  Generates a random number of iterations (between 2 to 9). 
@@ -69,7 +73,7 @@ namespace Dotnet.Samples.Parallelism
                 /// </remarks>
                 for (var i = 1; i < iterations + 1; i++)
                 {
-                    items.Add(i, String.Format("Task {0}", i));
+                    items.Add(i, string.Format("Task {0}", i));
                 }
 
                 var tasks = new List<Task>();
@@ -94,33 +98,33 @@ namespace Dotnet.Samples.Parallelism
                     /// The 'state' as well as the returned value could be any
                     /// type of object.
                     /// </remarks>
-                    var task = Task.Factory.StartNew(s =>
-                    {
-                        Console.WriteLine(
-                            String.Format("[{0}] {1} started, will take {2} miliseconds to complete . . .",
-                                DateTime.Now.TimeOfDay,
-                                temp.Value,
-                                interval
-                            )
-                        );
+                    var task = Task.Factory.StartNew(
+                        s =>
+                        {
+                            Console.WriteLine(
+                                string.Format(
+                                    "[{0}] {1} started, will take {2} miliseconds to complete . . .",
+                                    DateTime.Now.TimeOfDay,
+                                    temp.Value,
+                                    interval));
 
                         Thread.Sleep(interval);
 
                         return "Lorem ipsum dolor sit amet.";
 
-                        /// <remarks>
-                        /// Creates a continuation action so each tasks will print
-                        /// its name and return value immediately after completion.
-                        /// </remarks>
-                    }, temp.Value).ContinueWith(t => 
-                        Console.WriteLine(
-                            String.Format(
-                                "[{0}] {1} completed. Result: {2}",
-                                DateTime.Now.TimeOfDay,
-                                t.AsyncState,
-                                t.Result)
-                            )
-                        );
+                    /// <remarks>
+                    /// Creates a continuation action so each tasks will print
+                    /// its name and return value immediately after completion.
+                    /// </remarks>
+                    },
+                    temp.Value).ContinueWith(
+                        t => 
+                            Console.WriteLine(
+                                string.Format(
+                                    "[{0}] {1} completed. Result: {2}",
+                                    DateTime.Now.TimeOfDay,
+                                    t.AsyncState,
+                                    t.Result)));
 
                     tasks.Add(task);
                 }
@@ -132,7 +136,7 @@ namespace Dotnet.Samples.Parallelism
             }
             catch (Exception error)
             {
-                Console.WriteLine(String.Format("Exception caught: {0}", error.Message));
+                Console.WriteLine(string.Format("Exception caught: {0}", error.Message));
             }
             finally
             {
