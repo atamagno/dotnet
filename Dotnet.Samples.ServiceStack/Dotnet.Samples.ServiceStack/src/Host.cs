@@ -23,6 +23,7 @@
 // -----------------------------------------------------------------------﻿-----
 
 using Funq;
+using ServiceStack.ServiceInterface.Admin;
 using ServiceStack.WebHost.Endpoints;
 
 [module: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.StyleCop.CSharp.OrderingRules", "SA1200:UsingDirectivesMustBePlacedWithinNamespace", Justification = "Prevented solution build.")]
@@ -34,6 +35,14 @@ namespace Dotnet.Samples.ServiceStack
     {
         public Host() : base("Dotnet.Samples.ServiceStack", typeof(Service).Assembly)
         {
+            // https://github.com/ServiceStack/ServiceStack/wiki/Request-logger
+            Plugins
+                .Add(new RequestLogsFeature
+                    {
+                        RequiredRoles = new string[] { },
+                        EnableErrorTracking = true,
+                        EnableResponseTracking = true
+                    });
         }
         
         public override void Configure(Container container)
