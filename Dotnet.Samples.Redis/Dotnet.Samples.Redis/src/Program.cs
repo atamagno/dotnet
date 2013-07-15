@@ -45,7 +45,12 @@ namespace Dotnet.Samples.Redis
 
                 if (File.Exists(file))
                 {
-                    using (var server = Process.Start(file))
+                    var redis = new ProcessStartInfo()
+                    {
+                        FileName = file
+                    };
+
+                    using (var server = Process.Start(redis))
                     {
                         if (server.Responding)
                         {
@@ -55,33 +60,29 @@ namespace Dotnet.Samples.Redis
                                 CatalogInitializer.Configure();
 
                                 // Create
-                                CatalogInitializer.Seed().ForEach(created => client.Store<Book>(created));
-                                var message = string.Format("{0} [INFO] Created initial catalog (9 books):", DateTime.Now.ToTimestamp());
-                                message.ToConsoleInfo();
+                                "[CREATE] StoreAll".ToConsoleInfo();
+                                client.StoreAll<Book>(CatalogInitializer.Seed());
 
                                 // Read
+                                "[READ] GetAll".ToConsoleInfo();
                                 var catalog = client.GetAll<Book>().ToList();
-                                message = string.Format("{0} [INFO] Retrieving initial catalog ({1} books):", DateTime.Now.ToTimestamp(), catalog.Count);
-                                message.ToConsoleInfo();
                                 catalog.ForEach(retrieved => retrieved.ToJson<Book>().ToConsole());
 
                                 var isbn = "9780596800956";
-                                var book = client.GetById<Book>(isbn).ToJson<Book>();
-                                message = string.Format("{0} [INFO] Retrieved book with ISBN {1}:", DateTime.Now.ToTimestamp(), isbn);
-                                message.ToConsoleInfo();
-                                book.ToConsole();
+                                string.Format("[READ] GetById (Isbn = {0})", isbn).ToConsoleInfo();
+                                client.GetById<Book>(isbn).ToJson<Book>().ToConsole();
+
+                                // Update
+                                "[UPDATE] (InStock = false)".ToConsoleInfo();
+                                var book = client.GetById<Book>(isbn);
+                                book.InStock = false;
+                                client.Store<Book>(book);
+                                client.GetById<Book>(isbn).ToJson<Book>().ToConsole();
 
                                 // Delete
-                                var isbns = catalog.Take(3).Select(c => c.Isbn).ToList();
-                                client.DeleteByIds<Book>(isbns);
-                                message = string.Format("{0} [INFO] Deleted first {1} books.", DateTime.Now.ToTimestamp(), isbns.Count);
-                                message.ToConsoleInfo();
-                                catalog = null;
-                                catalog = client.GetAll<Book>().ToList();
-
-                                message = string.Format("{0} [INFO] Retrieving current catalog ({1} books):", DateTime.Now.ToTimestamp(), catalog.Count);
-                                message.ToConsoleInfo();
-                                catalog.ForEach(retrieved => retrieved.ToJson<Book>().ToConsole());
+                                string.Format("[DELETE] DeleteById (Isbn = {0})", isbn).ToConsoleInfo();
+                                client.DeleteById<Book>(isbn);
+                                client.GetById<Book>(isbn).ToJson<Book>().ToConsole();
                             }
                         }
                     }
@@ -89,13 +90,11 @@ namespace Dotnet.Samples.Redis
             }
             catch (Exception exception)
             {
-                Console.Write(Environment.NewLine);
-                Console.WriteLine(exception.ToString());
+                exception.ToString().ToConsole();
             }
             finally
             {
-                Console.Write(Environment.NewLine);
-                Console.WriteLine("Press any key to continue . . .");
+                "Press any key to continue . . .".ToConsole();
                 Console.ReadKey(true);
             }
         }

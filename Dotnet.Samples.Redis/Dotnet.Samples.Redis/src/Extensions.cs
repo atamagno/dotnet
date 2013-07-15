@@ -42,8 +42,7 @@ namespace Dotnet.Samples.Redis
         public static void ToConsoleInfo(this string output)
         {
             var builder = new StringBuilder();
-            builder.Append(output);
-            builder.Append(Environment.NewLine);
+            builder.AppendFormat("{0} [INFO] {1, -47}", DateTime.Now.ToTimestamp(), output);
             Console.BackgroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine(builder.ToString());
             Console.ResetColor();
