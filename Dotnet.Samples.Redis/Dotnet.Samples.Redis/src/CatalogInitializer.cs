@@ -1,32 +1,42 @@
-﻿#region License
-// Copyright (c) 2012 Nano Taboada, http://openid.nanotaboada.com.ar 
+﻿// ----------------------------------------------------------------------------
+// <copyright file="CatalogInitializer.cs" company="NanoTaboada">
+//   Copyright (c) 2013 Nano Taboada, http://openid.nanotaboada.com.ar 
 // 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
+//   Permission is hereby granted, free of charge, to any person obtaining a copy
+//   of this software and associated documentation files (the "Software"), to deal
+//   in the Software without restriction, including without limitation the rights
+//   to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//   copies of the Software, and to permit persons to whom the Software is
+//   furnished to do so, subject to the following conditions:
 // 
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
+//   The above copyright notice and this permission notice shall be included in
+//   all copies or substantial portions of the Software.
 // 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE. 
-#endregion
+//   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//   THE SOFTWARE.
+// </copyright>
+// -----------------------------------------------------------------------﻿-----
+
+[module: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "For educational purposes only.")]
 
 namespace Dotnet.Samples.Redis
 {
     using System;
     using System.Collections.Generic;
+    using ServiceStack;
 
     public static class CatalogInitializer
     {
+        public static void Configure()
+        {
+            ModelConfig<Book>.Id(map => map.Isbn);
+        }
+
         public static List<Book> Seed()
         {
             var books = new List<Book>();
@@ -41,8 +51,7 @@ namespace Dotnet.Samples.Redis
                     Publication = new DateTime(2010, 5, 10),
                     Pages = 1752,
                     InStock = true
-                }
-            );
+                });
 
             books.Add(
                 new Book()
@@ -54,8 +63,7 @@ namespace Dotnet.Samples.Redis
                     Publication = new DateTime(2010, 2, 10),
                     Pages = 1056,
                     InStock = true
-                }
-            );
+                });
 
             books.Add(
                 new Book()
@@ -67,8 +75,7 @@ namespace Dotnet.Samples.Redis
                     Publication = new DateTime(2010, 5, 28),
                     Pages = 848,
                     InStock = true
-                }
-            );
+                });
 
             books.Add(
                 new Book()
@@ -80,8 +87,7 @@ namespace Dotnet.Samples.Redis
                     Publication = new DateTime(2010, 11, 15),
                     Pages = 584,
                     InStock = true
-                }
-            );
+                });
 
             books.Add(
                 new Book()
@@ -93,8 +99,7 @@ namespace Dotnet.Samples.Redis
                     Publication = new DateTime(2010, 3, 31),
                     Pages = 784,
                     InStock = true
-                }
-            );
+                });
 
             books.Add(
                 new Book()
@@ -106,8 +111,7 @@ namespace Dotnet.Samples.Redis
                     Publication = new DateTime(2010, 3, 20),
                     Pages = 984,
                     InStock = true
-                }
-            );
+                });
 
             books.Add(
                 new Book()
@@ -119,8 +123,7 @@ namespace Dotnet.Samples.Redis
                     Publication = new DateTime(2010, 3, 15),
                     Pages = 352,
                     InStock = true
-                }
-            );
+                });
 
             books.Add(
                 new Book()
@@ -132,8 +135,7 @@ namespace Dotnet.Samples.Redis
                     Publication = new DateTime(2010, 3, 8),
                     Pages = 1536,
                     InStock = true
-                }
-            );
+                });
 
             books.Add(
                 new Book()
@@ -145,8 +147,7 @@ namespace Dotnet.Samples.Redis
                     Publication = new DateTime(2010, 8, 18),
                     Pages = 864,
                     InStock = true
-                }
-            );
+                });
 
             return books;
         }

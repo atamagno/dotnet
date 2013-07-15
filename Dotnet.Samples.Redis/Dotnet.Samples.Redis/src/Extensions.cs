@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// <copyright file="Book.cs" company="NanoTaboada">
+// <copyright file="Extensions.cs" company="NanoTaboada">
 //   Copyright (c) 2013 Nano Taboada, http://openid.nanotaboada.com.ar 
 // 
 //   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -27,23 +27,31 @@
 namespace Dotnet.Samples.Redis
 {
     using System;
+    using System.Text;
 
-    public class Book
+    public static class Extensions
     {
-        public string Isbn { get; set; }
+        public static void ToConsole(this string output)
+        {
+            var builder = new StringBuilder();
+            builder.Append(output);
+            builder.Append(Environment.NewLine);
+            Console.WriteLine(builder.ToString());
+        }
 
-        public string Title { get; set; }
+        public static void ToConsoleInfo(this string output)
+        {
+            var builder = new StringBuilder();
+            builder.Append(output);
+            builder.Append(Environment.NewLine);
+            Console.BackgroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine(builder.ToString());
+            Console.ResetColor();
+        }
 
-        public string Author { get; set; }
-
-        public string Publisher { get; set; }
-
-        public DateTime Publication { get; set; }
-
-        public int Pages { get; set; }
-
-        public string Description { get; set; }
-
-        public bool InStock { get; set; }
+        public static string ToTimestamp(this DateTime dateTime)
+        {
+            return dateTime.ToString("yyyy-MM-dd HH:mm:ss,ffff");
+        }
     }
 }
