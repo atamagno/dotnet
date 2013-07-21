@@ -1,0 +1,22 @@
+﻿<Rows>
+  <Row>
+    <Language>DE</Language>
+    <Pangram>Victor jagt zwölf Boxkämpfer quer über den großen Sylter Deich.</Pangram>
+    <Result>true</Result>
+  </Row>
+  <Row>
+    <Language>EN</Language>
+    <Pangram>The quick brown fox jumps over the lazy dog.</Pangram>
+    <Result>true</Result>
+  </Row>
+  <Row>
+    <Language>ES</Language>
+    <Pangram>El veloz murciélago hindú comía feliz cardillo y kiwi. La cigüeña tocaba el saxofón detrás del palenque de paja.</Pangram>
+    <Result>true</Result>
+</Row>
+  <Row>
+    <Language>FR</Language>
+    <Pangram>Portez ce vieux whisky au juge blond qui fume.</Pangram>
+    <Result>true</Result>
+  </Row>
+</Rows>
