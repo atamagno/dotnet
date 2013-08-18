@@ -27,23 +27,12 @@
 namespace Dotnet.Samples.SqlServerCe
 {
     using System;
-    using System.Data.SqlServerCe;
-    using System.IO;
-    using System.Reflection;
+    using System.Data.Common;
     using System.Text;
 
     public static class Extensions
     {
-        public static string BuildConnectionString(this SqlCeConnectionStringBuilder builder)
-        {
-            var directory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            var path = Path.Combine(Path.Combine(directory, "res"), "Catalog.sdf");
-            builder.DataSource = path;
-
-            return builder.ConnectionString;
-        }
-
-        public static string FormatValues(this SqlCeDataReader reader)
+        public static string FormatValues(this DbDataReader reader)
         {
             var builder = new StringBuilder();
 

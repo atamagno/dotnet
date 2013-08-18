@@ -35,6 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>lib\System.Data.SqlServerCe.dll</HintPath>
@@ -50,6 +51,7 @@
     <Compile Include="src\Program.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="lib\System.Data.SqlServerCe.dll" />
     <Content Include="res\Catalog.sdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
