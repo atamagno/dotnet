@@ -27,23 +27,12 @@
 namespace Dotnet.Samples.Sqlite
 {
     using System;
-    using System.Data.SQLite;
-    using System.IO;
-    using System.Reflection;
+    using System.Data.Common;
     using System.Text;
 
     public static class Extensions
     {
-        public static string BuildConnectionString(this SQLiteConnectionStringBuilder builder)
-        {
-            var directory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            var path = Path.Combine(Path.Combine(directory, "res"), "Catalog.sqlite");
-            builder.DataSource = path;
-
-            return builder.ConnectionString;
-        }
-
-        public static string FormatValues(this SQLiteDataReader reader)
+        public static string FormatValues(this DbDataReader reader)
         {
             var builder = new StringBuilder();
 

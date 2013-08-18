@@ -27,27 +27,34 @@
 namespace Dotnet.Samples.Sqlite
 {
     using System;
-    using System.Data.SQLite;
+    using System.Configuration;
+    using System.Data.Common;
 
     public class Program
     {
         public static void Main()
         {
-            var connectionString = new SQLiteConnectionStringBuilder().BuildConnectionString();
+            var config = ConfigurationManager.ConnectionStrings["Catalog"];
+            var factory = DbProviderFactories.GetFactory(config.ProviderName);
             var statement = "SELECT * FROM Books";
 
             try
             {
-                using (var connection = new SQLiteConnection(connectionString))
+                using (var connection = factory.CreateConnection())
                 {
+                    connection.ConnectionString = config.ConnectionString;
                     connection.Open();
 
                     using (var transaction = connection.BeginTransaction())
                     {
                         try
                         {
-                            using (var command = new SQLiteCommand(statement, connection, transaction))
+                            using (var command = factory.CreateCommand())
                             {
+                                command.Connection = connection;
+                                command.Transaction = transaction;
+                                command.CommandText = statement;
+
                                 using (var reader = command.ExecuteReader())
                                 {
                                     if (reader.HasRows)
@@ -62,16 +69,17 @@ namespace Dotnet.Samples.Sqlite
                         catch (Exception)
                         {
                             transaction.Rollback();
+                            throw;
                         }
                     }
 
                     connection.Close();
                 }
             }
-            catch (Exception error)
+            catch (Exception exception)
             {
                 Console.Write(Environment.NewLine);
-                Console.WriteLine(string.Format("Exception: {0}", error.ToString()));
+                Console.WriteLine(string.Format("Exception: {0}", exception.ToString()));
             }
             finally
             {
