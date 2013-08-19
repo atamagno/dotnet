@@ -37,23 +37,48 @@ namespace Dotnet.Samples.Entity
             {
                 using (var catalog = new Catalog())
                 {
-                    var books = from book in catalog.Books
-                                where book.InStock == true
-                                orderby book.Published
-                                select book;
+                    catalog.Clean();
 
-                    Console.WriteLine(books); // outputs generated SQL
+                    // Create
+                    CatalogInitializer.Seed().ForEach(book => catalog.Books.Add(book));
+                    catalog.SaveChanges();
+
+                    // Read
+                    var booksInCatalog = catalog.Books
+                        .OrderBy(book => book.Published);
+
+                    Console.WriteLine(booksInCatalog.FormatValues());
                     Console.Write(Environment.NewLine);
                     Console.WriteLine("Press any key to continue . . .");
                     Console.ReadKey(true);
                     Console.Clear();
-                    Console.WriteLine(books.FormatValues());
+
+                    // Update
+                    var bookToUpdate = catalog.Books
+                        .Where(book => book.Title.Contains("Depth"))
+                        .SingleOrDefault();
+
+                    bookToUpdate.Title += ", Second Edition";
+                    catalog.SaveChanges();
+
+                    // Delete
+                    var booksToDelete = catalog.Books
+                        .Where(book => book.InStock == false)
+                        .ToList();
+
+                    booksToDelete.ForEach(book => catalog.Books.Remove(book));
+                    catalog.SaveChanges();
+
+                    var booksInStock = catalog.Books
+                        .OrderBy(book => book.Published);
+
+                    Console.WriteLine(booksInStock.FormatValues());
                 }
             }
-            catch (Exception error)
+            catch (Exception exception)
             {
                 Console.Write(Environment.NewLine);
-                Console.WriteLine(string.Format("Exception: {0}", error.ToString()));
+                Console.WriteLine(string.Format("Exception: {0}", exception.ToString()));
             }
             finally
             {

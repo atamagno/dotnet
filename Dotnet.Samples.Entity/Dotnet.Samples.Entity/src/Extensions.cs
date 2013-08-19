@@ -26,12 +26,19 @@
 
 namespace Dotnet.Samples.Entity
 {
-    using System;
+    using System.Data.Entity;
+    using System.Data.Entity.Infrastructure;
     using System.Linq;
     using System.Text;
 
     public static class Extensions
     {
+        public static void Clean(this DbContext context)
+        {
+            var objectContext = ((IObjectContextAdapter)context).ObjectContext;
+            objectContext.ExecuteStoreCommand("DELETE FROM Books");
+        }
+
         public static string FormatValues(this IQueryable<Book> books)
         {
             var builder = new StringBuilder();

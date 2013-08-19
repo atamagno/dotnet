@@ -26,8 +26,10 @@
 
 namespace Dotnet.Samples.Entity
 {
+    using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity;
 
+    [Table("Books")]
     public class Catalog : DbContext
     {
         public DbSet<Book> Books { get; set; }
