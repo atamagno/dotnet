@@ -6,7 +6,7 @@ Manifesto
 
 About
 -----
-Microsoft&reg; .NET&trade; sample projects showcasing a variety of technologies, frameworks and libraries. Created by [Nano Taboada](http://openid.nanotaboada.com.ar) under a [MIT License](http://opensource.org/licenses/mit-license.php).
+Microsoft&reg; .NET&trade; sample projects showcasing a variety of technologies, frameworks and libraries.
 
 Credits
 -------
@@ -14,4 +14,5 @@ All samples have been coded in C# using [Visual Studio 2010 Express](http://www.
 
 Terms
 -----
+Created by [Nano Taboada](http://openid.nanotaboada.com.ar) under a [MIT License](http://opensource.org/licenses/mit-license.php).
 All trademarks, registered trademarks, service marks, product names, company names or logos are property of their respective owners and are used for reference purposes only.
