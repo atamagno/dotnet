@@ -38,7 +38,7 @@ namespace Dotnet.Samples.WebApi.Models
         
         public string Publisher { get; set; }
         
-        public DateTime Publication { get; set; }
+        public DateTime Published { get; set; }
         
         public int Pages { get; set; }
         

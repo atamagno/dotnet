@@ -39,84 +39,84 @@ namespace Dotnet.Samples.WebApi.Models
             books.Add(
                 new Book()
                 {
-                    Isbn = "9781430225492",
-                    Title = "Pro C# 2010 and the .NET 4 Platform",
+                    Isbn = "9781430242338",
+                    Title = "Pro C# 5.0 and the .NET 4.5 Framework",
                     Author = "Andrew Troelsen",
                     Publisher = "Apress",
-                    Publication = new DateTime(2010, 5, 10),
-                    Pages = 1752,
+                    Published = new DateTime(2012, 8, 22),
+                    Pages = 1560,
                     InStock = true
                 });
 
             books.Add(
                 new Book()
                 {
-                    Isbn = "9780596800956",
-                    Title = "C# 4.0 in a Nutshell",
+                    Isbn = "9781449320102",
+                    Title = "C# 5.0 in a Nutshell",
                     Author = "Joseph Albahari, et al.",
                     Publisher = "O'Reilly Media",
-                    Publication = new DateTime(2010, 2, 10),
-                    Pages = 1056,
+                    Published = new DateTime(2012, 6, 26),
+                    Pages = 1064,
                     InStock = true
                 });
 
             books.Add(
                 new Book()
                 {
-                    Isbn = "9781449380342",
-                    Title = "Head First C#",
-                    Author = "Andrew Stellman, et al.",
-                    Publisher = "O'Reilly Media",
-                    Publication = new DateTime(2010, 5, 28),
-                    Pages = 848,
+                    Isbn = "9780672336904",
+                    Title = "C# 5.0 Unleashed",
+                    Author = "Bart De Smet",
+                    Publisher = "Sams Publishing",
+                    Published = new DateTime(2013, 5, 3),
+                    Pages = 1700,
                     InStock = true
                 });
 
             books.Add(
                 new Book()
                 {
-                    Isbn = "9781935182474",
-                    Title = "C# in Depth",
+                    Isbn = "9781617291340",
+                    Title = "C# in Depth, 3rd Edition",
                     Author = "Jon Skeet",
                     Publisher = "Manning Publications",
-                    Publication = new DateTime(2010, 11, 15),
-                    Pages = 584,
+                    Published = new DateTime(2013, 09, 28),
+                    Pages = 631,
                     InStock = true
                 });
 
             books.Add(
                 new Book()
                 {
-                    Isbn = "9780735626706",
-                    Title = "Microsoft Visual C# 2010 Step by Step",
+                    Isbn = "9780735668010",
+                    Title = "Microsoft Visual C# 2012 Step by Step",
                     Author = "John Sharp",
                     Publisher = "Microsoft Press",
-                    Publication = new DateTime(2010, 3, 31),
-                    Pages = 784,
+                    Published = new DateTime(2013, 1, 11),
+                    Pages = 842,
                     InStock = true
                 });
 
             books.Add(
                 new Book()
                 {
-                    Isbn = "9780321694690",
-                    Title = "Essential C# 4.0",
+                    Isbn = "9780321877581",
+                    Title = "Essential C# 5.0",
                     Author = "Mark Michaelis",
                     Publisher = "Addison-Wesley Professional",
-                    Publication = new DateTime(2010, 3, 20),
-                    Pages = 984,
+                    Published = new DateTime(2012, 12, 7),
+                    Pages = 1032,
                     InStock = true
                 });
 
             books.Add(
                 new Book()
                 {
-                    Isbn = "9780321658708",
-                    Title = "Effective C#",
-                    Author = "Bill Wagner",
-                    Publisher = "Addison-Wesley Professional",
-                    Publication = new DateTime(2010, 3, 15),
-                    Pages = 352,
+                    Isbn = "9781890774721",
+                    Title = "Murach's C# 2012",
+                    Author = "Joel Murach, et al.",
+                    Publisher = "Mike Murach & Associates",
+                    Published = new DateTime(2013, 5, 6),
+                    Pages = 842,
                     InStock = true
                 });
 
@@ -124,23 +124,23 @@ namespace Dotnet.Samples.WebApi.Models
                 new Book()
                 {
                     Isbn = "9780470502259",
-                    Title = "Professional C# 4 and .NET 4",
+                    Title = "Professional C# 2012 and .NET 4.5",
                     Author = "Christian Nagel, et al.",
                     Publisher = "Wrox",
-                    Publication = new DateTime(2010, 3, 8),
-                    Pages = 1536,
+                    Published = new DateTime(2012, 10, 6),
+                    Pages = 1584,
                     InStock = true
                 });
 
             books.Add(
                 new Book()
                 {
-                    Isbn = "9780596159832",
-                    Title = "Programming C# 4.0",
+                    Isbn = "9781449320416",
+                    Title = "Programming C# 5.0",
                     Author = "Ian Griffiths, et al.",
                     Publisher = "O'Reilly Media",
-                    Publication = new DateTime(2010, 8, 18),
-                    Pages = 864,
+                    Published = new DateTime(2012, 10, 5),
+                    Pages = 886,
                     InStock = true
                 });
 

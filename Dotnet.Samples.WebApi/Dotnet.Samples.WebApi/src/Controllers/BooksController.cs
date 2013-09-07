@@ -44,9 +44,9 @@ namespace Dotnet.Samples.WebApi.Controllers
             return catalog.RetrieveAll();
         }
 
-        public HttpResponseMessage GetBook(string id)
+        public HttpResponseMessage GetBook(string isbn)
         {
-            var book = catalog.Retrieve(id);
+            var book = catalog.Retrieve(isbn);
 
             if (book == null)
             {
@@ -68,7 +68,7 @@ namespace Dotnet.Samples.WebApi.Controllers
             else
             {
                 catalog.Create(book);
-                var uri = Url.Link("DefaultApi", new { id = book.Isbn });
+                var uri = Url.Link("DefaultApi", new { isbn = book.Isbn });
 
                 var response = Request.CreateResponse<Book>(HttpStatusCode.Created, book);
                 response.Headers.Location = new Uri(uri);
@@ -77,9 +77,11 @@ namespace Dotnet.Samples.WebApi.Controllers
         }
 
         // PUT
-        public HttpResponseMessage PutBook(Book book)
+        public HttpResponseMessage PutBook(string isbn, Book book)
         {
-            if (!catalog.Update(book.Isbn))
+            book.Isbn = isbn;
+
+            if (!catalog.Update(book))
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
@@ -90,9 +92,9 @@ namespace Dotnet.Samples.WebApi.Controllers
         }
 
         // DELETE
-        public HttpResponseMessage DeleteBook(string id)
+        public HttpResponseMessage DeleteBook(string isbn)
         {
-            if (!catalog.Delete(id))
+            if (!catalog.Delete(isbn))
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }

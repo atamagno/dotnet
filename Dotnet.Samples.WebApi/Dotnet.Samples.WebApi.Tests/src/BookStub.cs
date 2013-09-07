@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------------
-// <copyright file="Catalog.cs" company="NanoTaboada">
+// <copyright file="BookStub.cs" company="NanoTaboada">
 //   Copyright (c) 2013 Nano Taboada, http://openid.nanotaboada.com.ar 
 // 
 //   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,58 +24,28 @@
 
 [module: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "For educational purposes only.")]
 
-namespace Dotnet.Samples.WebApi.Models
+namespace Dotnet.Samples.WebApi.Tests
 {
     using System;
-    using System.Collections.Generic;
+    using Dotnet.Samples.WebApi.Models;
 
-    public class Catalog
+    public static class BookStub
     {
-        private List<Book> books;
-
-        public Catalog()
+        public static Book Object
         {
-            this.books = CatalogInitializer.Seed();
-        }
-
-        public void Create(Book book)
-        {
-            this.books.Add(book);
-        }
-
-        public Book Retrieve(string isbn)
-        {
-            return this.books.Find(match => match.Isbn == isbn);
-        }
-
-        public IEnumerable<Book> RetrieveAll()
-        {
-            return this.books;
-        }
-
-        public bool Update(Book book)
-        {
-            if (this.books.Exists(match => match.Isbn == book.Isbn))
+            get
             {
-                this.books.Remove(book);
-                this.books.Add(book);
-
-                return true;
+                return new Book()
+                {
+                    Isbn = "9781449320171",
+                    Title = "C# 5.0 Pocket Reference",
+                    Author = "Joseph Albahari, et al.",
+                    Publisher = "O'Reilly Media",
+                    Published = new DateTime(2012, 6, 16),
+                    Pages = 224,
+                    InStock = true
+                };
             }
-
-            return false;
-        }
-
-        public bool Delete(string isbn)
-        {
-            var book = this.books.Find(match => match.Isbn == isbn);
-
-            if (book != null)
-            {
-                return this.books.Remove(book);
-            }
-
-            return false;
-        }
+        } 
     }
 }
