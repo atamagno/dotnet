@@ -20,7 +20,7 @@
 //   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //   THE SOFTWARE.
 // </copyright>
-// -----------------------------------------------------------------------﻿-----
+// -----------------------------------------------------------------------------
 
 [module: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "For educational purposes only.")]
 
@@ -30,7 +30,6 @@ namespace Dotnet.Samples.WebApi.Controllers
     using System.Collections.Generic;
     using System.Net;
     using System.Net.Http;
-    using System.Web;
     using System.Web.Http;
     using Dotnet.Samples.WebApi.Models;
 
@@ -79,8 +78,6 @@ namespace Dotnet.Samples.WebApi.Controllers
         // PUT
         public HttpResponseMessage PutBook(string isbn, Book book)
         {
-            book.Isbn = isbn;
-
             if (!catalog.Update(book))
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound);

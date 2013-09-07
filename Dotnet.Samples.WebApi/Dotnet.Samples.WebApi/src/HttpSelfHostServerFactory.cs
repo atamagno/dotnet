@@ -35,7 +35,7 @@ namespace Dotnet.Samples.WebApi
         public static HttpSelfHostServer Create(Uri uri)
         {
             var config = new HttpSelfHostConfiguration(uri.AbsoluteUri);
-            config.Routes.MapHttpRoute("API Default", "api/{controller}/{id}", new { id = RouteParameter.Optional });
+            config.Routes.MapHttpRoute("API Default", "api/{controller}/{isbn}", new { isbn = RouteParameter.Optional });
             config.Formatters.Remove(config.Formatters.XmlFormatter);
 
             var json = config.Formatters.JsonFormatter;
